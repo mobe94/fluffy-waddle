@@ -9,12 +9,17 @@ use Hackathon\Game\Result;
  * @package Hackathon\PlayerIA
  * @author FlorentD
  */
-class Bemo94Player extends Player
+class Mobe94Player extends Player
 {
     protected $mySide;
     protected $opponentSide;
     protected $result;
-    private $test;
+    private $mylastscore = 0;
+    private $hislastscore = 0;
+    private $hisscore;
+    private $myscore;
+    private $heisbad;
+    private $imbad;
 
     public function getChoice()
     {
@@ -42,9 +47,24 @@ class Bemo94Player extends Player
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
 
+        if ($this->result->getNbRound() == 0)
+            return parent::friendChoice();
+        else {
+            $this->hislastscore = $this->result->getLastScoreFor($this->opponentSide);
+            $this->mylastscore = $this->result->getLastScoreFor($this->mySide);
 
+            if ($this->result->getLastChoiceFor($this->opponentSide) == "foe")
+                $this->heisbad = true;
+            else
+                $this->heisbad = false;
 
-        return parent::foeChoice();
+            if ($this->hisscore > $this->hislastscore)
+                return parent::foeChoice();
+            else if ($this->hisscore == $this->hislastscore)
+                return parent::friendChoice();
+            else
+                return parent::foeChoice();
+        }
     }
- 
-};
+
+}
