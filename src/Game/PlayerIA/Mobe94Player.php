@@ -14,12 +14,6 @@ class Mobe94Player extends Player
     protected $mySide;
     protected $opponentSide;
     protected $result;
-    private $mylastscore = 0;
-    private $hislastscore = 0;
-    private $hisscore;
-    private $myscore;
-    private $heisbad;
-    private $imbad;
 
     public function getChoice()
     {
@@ -48,11 +42,19 @@ class Mobe94Player extends Player
         // -------------------------------------    -----------------------------------------------------
 
 
-        if ($this->result->getNbRound() / 2 == 0)
-            return parent::friendChoice();
-        else if ($this->result->getNbRound() / 2 != 0)
+        $final = 0;
+
+        for ($i = 0; $i <= 100; $i++) {
+            $randomized = rand(0, 100);
+
+            if ($randomized > 50)
+                $final++;
+        }
+
+        if ($final > 50)
             return parent::foeChoice();
 
+        return parent::friendChoice();
     }
 
 }
