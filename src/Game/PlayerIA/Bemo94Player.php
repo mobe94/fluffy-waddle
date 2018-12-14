@@ -9,11 +9,12 @@ use Hackathon\Game\Result;
  * @package Hackathon\PlayerIA
  * @author FlorentD
  */
-class FriendPlayer extends Player
+class Bemo94Player extends Player
 {
     protected $mySide;
     protected $opponentSide;
     protected $result;
+    private $test;
 
     public function getChoice()
     {
@@ -40,8 +41,10 @@ class FriendPlayer extends Player
         // -------------------------------------    -----------------------------------------------------
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
- 
-        return parent::friendChoice();
+
+
+
+        return parent::foeChoice();
     }
  
 };
